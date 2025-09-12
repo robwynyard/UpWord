@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Document Beautifier - Earth Tones Color Scheme</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background: #EAE0D5;
+            color: #0A0908;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0A0908;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #22333B;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .color-palette {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(10, 9, 8, 0.08);
+            margin-bottom: 3rem;
+            border: 1px solid #C6AC8F;
+        }
+
+        .palette-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #0A0908;
+        }
+
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-card {
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            border: 1px solid #C6AC8F;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-2px);
+        }
+
+        .color-info h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0A0908;
+            margin-bottom: 0.3rem;
+        }
+
+        .color-info p {
+            font-size: 0.8rem;
+            color: #22333B;
+            font-family: 'Monaco', monospace;
+        }
+
+        .color-info .usage {
+            font-size: 0.75rem;
+            color: #5E503F;
+            margin-top: 0.2rem;
+            font-style: italic;
+        }
+
+        /* Earth Tone Color Palette */
+        .charcoal-black { background: #0A0908; }
+        .slate-blue { background: #22333B; }
+        .warm-cream { background: #EAE0D5; }
+        .warm-beige { background: #C6AC8F; }
+        .dark-brown { background: #5E503F; }
+        .pure-white { background: #ffffff; }
+
+        .ui-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(10, 9, 8, 0.08);
+            border: 1px solid #C6AC8F;
+        }
+
+        .example-header {
+            background: linear-gradient(135deg, #22333B 0%, #5E503F 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .example-content {
+            padding: 1.5rem;
+        }
+
+        .upload-zone {
+            border: 2px dashed #C6AC8F;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: #EAE0D5;
+            transition: all 0.3s ease;
+        }
+
+        .upload-zone:hover {
+            border-color: #5E503F;
+            background: white;
+        }
+
+        .upload-icon {
+            width: 48px;
+            height: 48px;
+            background: #22333B;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #22333B 0%, #5E503F 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(34, 51, 59, 0.3);
+        }
+
+        .btn-accent {
+            background: #C6AC8F;
+            color: #0A0908;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            background: #5E503F;
+            color: white;
+            box-shadow: 0 8px 25px rgba(198, 172, 143, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #22333B;
+            border: 2px solid #22333B;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #22333B;
+            color: white;
+        }
+
+        .status-bar {
+            background: #EAE0D5;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #C6AC8F;
+        }
+
+        .progress-bar {
+            background: #EAE0D5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #C6AC8F 0%, #C6AC8F 65%, #EAE0D5 65%);
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .progress-text {
+            color: #22333B;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .success-message {
+            background: #EAE0D5;
+            border: 1px solid #C6AC8F;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .success-text {
+            color: #0A0908;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .guidelines {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+            border: 1px solid #C6AC8F;
+        }
+
+        .guidelines h2 {
+            color: #0A0908;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .guideline-item {
+            background: #EAE0D5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #22333B;
+            box-shadow: 0 2px 10px rgba(34, 51, 59, 0.08);
+        }
+
+        .guideline-item h3 {
+            color: #0A0908;
+            margin-bottom: 0.5rem;
+        }
+
+        .guideline-item p {
+            color: #22333B;
+            font-size: 0.9rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #0A0908 0%, #22333B 50%, #5E503F 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(198, 172, 143, 0.1);
+            border-radius: 50%;
+            transform: translate(50px, -50px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #C6AC8F;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(34, 51, 59, 0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #C6AC8F 0%, #5E503F 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+        }
+
+        .neutral-section {
+            background: #EAE0D5;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="hero-title">AI Document Beautifier</h1>
+            <p class="hero-subtitle">Transform plain documents into sophisticated, professionally designed masterpieces with AI-generated custom visuals</p>
+            <div class="cta-buttons">
+                <button class="btn-accent">Start Transforming</button>
+                <button class="btn-secondary" style="color: white; border-color: rgba(255,255,255,0.5);">View Examples</button>
+            </div>
+        </div>
+
+        <div class="color-palette">
+            <h2 class="palette-title">Neutral Earth Tones Palette</h2>
+            <div class="colors-grid">
+                <div class="color-card">
+                    <div class="color-swatch charcoal-black"></div>
+                    <div class="color-info">
+                        <h3>Charcoal Black</h3>
+                        <p>#0A0908</p>
+                        <div class="usage">Primary text, high contrast</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch slate-blue"></div>
+                    <div class="color-info">
+                        <h3>Slate Blue</h3>
+                        <p>#22333B</p>
+                        <div class="usage">Headers, primary buttons</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch warm-cream"></div>
+                    <div class="color-info">
+                        <h3>Warm Cream</h3>
+                        <p>#EAE0D5</p>
+                        <div class="usage">Backgrounds, subtle highlights</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch warm-beige"></div>
+                    <div class="color-info">
+                        <h3>Warm Beige</h3>
+                        <p>#C6AC8F</p>
+                        <div class="usage">Accents, borders, CTAs</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch dark-brown"></div>
+                    <div class="color-info">
+                        <h3>Dark Brown</h3>
+                        <p>#5E503F</p>
+                        <div class="usage">Hover states, emphasis</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch pure-white"></div>
+                    <div class="color-info">
+                        <h3>Pure White</h3>
+                        <p>#FFFFFF</p>
+                        <div class="usage">Cards, clean sections</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 style="color: #0A0908; margin-bottom: 1rem;">AI Visual Generation</h3>
+                <p style="color: #22333B;">Custom backgrounds, gradients, and graphics generated specifically for your document content</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 style="color: #0A0908; margin-bottom: 1rem;">Smart Table Creation</h3>
+                <p style="color: #22333B;">Automatically converts data into beautifully formatted tables with professional styling</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3 style="color: #0A0908; margin-bottom: 1rem;">Typography Enhancement</h3>
+                <p style="color: #22333B;">AI-selected font combinations and spacing for optimal readability and visual appeal</p>
+            </div>
+        </div>
+
+        <div class="ui-examples">
+            <div class="example-card">
+                <div class="example-header">
+                    <h3>Upload Interface</h3>
+                </div>
+                <div class="example-content">
+                    <div class="upload-zone">
+                        <div class="upload-icon">📄</div>
+                        <h3 style="color: #0A0908; margin-bottom: 0.5rem;">Drop your document here</h3>
+                        <p style="color: #22333B;">or click to upload</p>
+                        <p style="color: #5E503F; font-size: 0.8rem; margin-top: 0.5rem;">Supports .docx, .txt, .pdf</p>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center;">
+                        <button class="btn-primary">Choose File</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <h3>Processing Status</h3>
+                </div>
+                <div class="example-content">
+                    <div class="status-bar">
+                        <h4 style="color: #0A0908; margin-bottom: 0.5rem;">🎨 Crafting beautiful design...</h4>
+                        <p style="color: #22333B; margin: 0;">Analyzing content and generating sophisticated earth-tone visuals</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                        <p class="progress-text">65% complete</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <h3>Export Options</h3>
+                </div>
+                <div class="example-content">
+                    <h4 style="color: #0A0908; margin-bottom: 1rem;">Your document is beautifully transformed! ✨</h4>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="btn-accent">Download PDF</button>
+                        <button class="btn-secondary">Download Word</button>
+                    </div>
+                    <div class="success-message">
+                        <p class="success-text">✅ Document enhanced with sophisticated earth-tone styling</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <h3>Button Variations</h3>
+                </div>
+                <div class="example-content">
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <button class="btn-primary">Primary Action (Dark Gradient)</button>
+                        <button class="btn-accent">Accent Action (Warm Beige)</button>
+                        <button class="btn-secondary">Secondary Action (Outline)</button>
+                    </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: #EAE0D5; border-radius: 8px; border: 1px solid #C6AC8F;">
+                        <p style="color: #22333B; margin: 0; font-size: 0.9rem;">
+                            🌿 <strong>Design Philosophy:</strong> Natural, sophisticated, and timeless. This palette evokes quality craftsmanship and professional excellence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="neutral-section">
+            <h2 style="color: #0A0908; margin-bottom: 1rem;">Why Earth Tones?</h2>
+            <p style="color: #22333B; max-width: 700px; margin: 0 auto 2rem;">
+                Earth tones convey sophistication, trustworthiness, and timeless elegance. This palette creates a 
+                premium feel that appeals to professionals who value quality and craftsmanship in their work.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #C6AC8F; border-radius: 50%; margin: 0 auto 0.5rem;"></div>
+                    <p style="color: #5E503F; font-weight: 600;">Warm & Inviting</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #22333B; border-radius: 50%; margin: 0 auto 0.5rem;"></div>
+                    <p style="color: #5E503F; font-weight: 600;">Professional</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #5E503F; border-radius: 50%; margin: 0 auto 0.5rem;"></div>
+                    <p style="color: #5E503F; font-weight: 600;">Timeless</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="guidelines">
+            <h2>Earth Tone Usage Guidelines</h2>
+            <div class="guidelines-grid">
+                <div class="guideline-item">
+                    <h3>Charcoal Black (#0A0908)</h3>
+                    <p>Primary text color for maximum readability. Use for headings, body text, and high-contrast elements that need attention.</p>
+                </div>
+                <div class="guideline-item">
+                    <h3>Slate Blue (#22333B)</h3>
+                    <p>Primary brand color for headers, main buttons, and important UI elements. Creates trust and sophistication.</p>
+                </div>
+                <div class="guideline-item">
+                    <h3>Warm Cream (#EAE0D5)</h3>
+                    <p>Page backgrounds and subtle section backgrounds. Creates a warm, inviting atmosphere without being distracting.</p>
+                </div>
+                <div class="guideline-item">
+                    <h3>Warm Beige (#C6AC8F)</h3>
+                    <p>Accent elements, borders, and call-to-action buttons. Adds warmth and draws attention to important actions.</p>
+                </div>
+                <div class="guideline-item">
+                    <h3>Dark Brown (#5E503F)</h3>
+                    <p>Hover states, emphasis elements, and secondary accents. Provides depth and richness to the design.</p>
+                </div>
+                <div class="guideline-item">
+                    <h3>Pure White (#FFFFFF)</h3>
+                    <p>Card backgrounds, form fields, and clean content areas. Provides contrast and breathing space in the design.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 2rem; margin-top: 3rem; border: 1px solid #C6AC8F; text-align: center;">
+            <h2 style="color: #0A0908; margin-bottom: 1rem;">Sophisticated & Timeless Design</h2>
+            <p style="color: #22333B; max-width: 600px; margin: 0 auto;">
+                This earth tone palette creates a premium, sophisticated aesthetic that never goes out of style. 
+                Perfect for professionals who want their documents to convey quality, trustworthiness, and refined taste.
+            </p>
+            <div style="margin-top: 2rem;">
+                <button class="btn-accent" style="margin-right: 1rem;">Start Creating</button>
+                <button class="btn-secondary">Learn More</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
