@@ -26,46 +26,51 @@ export function TodoList() {
   }
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Todo List</h2>
+    <div className="card-earth max-w-md mx-auto">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-foreground">Todo List</h2>
+        <div className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm font-medium">
+          {completedTodos.length}/{todos.length}
+        </div>
+      </div>
       
-      <form onSubmit={handleSubmit} className="mb-4">
-        <div className="flex gap-2">
+      <form onSubmit={handleSubmit} className="mb-6">
+        <div className="flex gap-3">
           <input
             type="text"
             value={newTodoText}
             onChange={(e) => setNewTodoText(e.target.value)}
             placeholder="Add a new todo..."
-            className="flex-1 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-3 bg-background-paper border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder:text-foreground-subtle"
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+            className="btn-accent px-6"
           >
             Add
           </button>
         </div>
       </form>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         {todos.map((todo) => (
           <div
             key={todo.id}
             className={cn(
-              "flex items-center space-x-2 p-2 border rounded",
-              todo.completed && "bg-gray-50 opacity-75"
+              "flex items-center space-x-3 p-4 bg-background-paper border border-border-muted rounded-lg transition-all duration-200 hover:shadow-earth",
+              todo.completed && "bg-background opacity-75"
             )}
           >
             <input
               type="checkbox"
               checked={todo.completed}
               onChange={() => toggleTodo(todo.id)}
-              className="rounded"
+              className="w-5 h-5 text-primary bg-background-paper border-border rounded focus:ring-primary focus:ring-2"
             />
             <span
               className={cn(
-                "flex-1",
-                todo.completed && "line-through text-gray-500"
+                "flex-1 text-foreground",
+                todo.completed && "line-through text-foreground-subtle"
               )}
             >
               {todo.text}
@@ -74,8 +79,19 @@ export function TodoList() {
         ))}
       </div>
 
-      <div className="mt-4 text-sm text-gray-600">
-        Completed: {completedTodos.length} / {todos.length}
+      {todos.length === 0 && (
+        <div className="text-center py-8 text-foreground-muted">
+          <p>No todos yet. Add one above!</p>
+        </div>
+      )}
+
+      <div className="mt-6 p-4 bg-background rounded-lg border-l-4 border-accent">
+        <p className="text-sm text-foreground-muted">
+          <span className="font-medium text-foreground">Progress:</span> {completedTodos.length} of {todos.length} tasks completed
+          {completedTodos.length === todos.length && todos.length > 0 && (
+            <span className="text-accent font-medium"> 🎉 All done!</span>
+          )}
+        </p>
       </div>
     </div>
   )

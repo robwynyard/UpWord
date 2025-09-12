@@ -8,26 +8,31 @@ export function Counter() {
   const [count, setCount] = useAtom(countAtom)
 
   return (
-    <div className="flex items-center space-x-4 p-4 border rounded-lg">
-      <button
-        onClick={() => setCount(count - 1)}
-        className={cn(
-          "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-        )}
-      >
-        -
-      </button>
-      <span className="text-xl font-semibold min-w-[2rem] text-center">
-        {count}
-      </span>
-      <button
-        onClick={() => setCount(count + 1)}
-        className={cn(
-          "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-        )}
-      >
-        +
-      </button>
+    <div className="card-earth">
+      <div className="flex items-center justify-center space-x-6">
+        <button
+          onClick={() => setCount(count - 1)}
+          className={cn(
+            "w-12 h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary-hover transition-all duration-200 hover:-translate-y-0.5 hover:shadow-earth flex items-center justify-center text-xl font-semibold"
+          )}
+        >
+          −
+        </button>
+        <div className="min-w-[4rem] text-center">
+          <span className="text-3xl font-bold text-foreground">
+            {count}
+          </span>
+          <p className="text-sm text-foreground-muted mt-1">Count</p>
+        </div>
+        <button
+          onClick={() => setCount(count + 1)}
+          className={cn(
+            "w-12 h-12 rounded-full bg-accent text-accent-foreground hover:bg-accent-hover hover:text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-earth flex items-center justify-center text-xl font-semibold"
+          )}
+        >
+          +
+        </button>
+      </div>
     </div>
   )
 }
