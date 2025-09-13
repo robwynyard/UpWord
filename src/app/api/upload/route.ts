@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
           id: uniqueName,
           originalName: file.name,
           size: file.size,
-          type: file.type,
+          mimeType: file.type,
           uploadedAt: new Date().toISOString(),
           ...parsedDoc
         }

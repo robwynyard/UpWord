@@ -4,26 +4,26 @@
 @tailwind utilities;
 
 :root {
-  /* Earth Tone Color Palette */
+  /* Minimal Color Palette with Earth-tone Accents */
   --charcoal-black: #0A0908;
   --slate-blue: #22333B;
-  --warm-cream: #EAE0D5;
+  --warm-cream: #FEFEFE;
   --warm-beige: #C6AC8F;
   --dark-brown: #5E503F;
   --pure-white: #FFFFFF;
   
-  /* Semantic Variables */
-  --background: var(--warm-cream);
-  --foreground: var(--charcoal-black);
-  --card: var(--pure-white);
-  --card-foreground: var(--charcoal-black);
+  /* Semantic Variables - Minimal White Design */
+  --background: var(--pure-white);
+  --foreground: #1A1A1A;
+  --card: var(--warm-cream);
+  --card-foreground: #1A1A1A;
   --primary: var(--slate-blue);
   --primary-foreground: var(--pure-white);
   --accent: var(--warm-beige);
-  --accent-foreground: var(--charcoal-black);
-  --muted: var(--warm-cream);
-  --muted-foreground: var(--slate-blue);
-  --border: var(--warm-beige);
+  --accent-foreground: #1A1A1A;
+  --muted: #F8F9FA;
+  --muted-foreground: #6B7280;
+  --border: #E5E7EB;
   --input: var(--pure-white);
   --ring: var(--slate-blue);
 }
@@ -58,29 +58,29 @@ body {
   padding: 0;
 }
 
-/* Custom Earth-tone Components */
+/* Minimal Design Components */
 @layer components {
   .btn-primary {
-    @apply bg-earth-gradient text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:shadow-earth-xl hover:-translate-y-0.5;
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-primary-hover hover:shadow-lg;
   }
   
   .btn-accent {
-    @apply bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:bg-accent-hover hover:text-primary-foreground hover:shadow-earth-xl hover:-translate-y-0.5;
+    @apply bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-accent/80;
   }
   
   .btn-secondary {
-    @apply bg-background-paper text-foreground-muted border-2 border-primary px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:bg-primary hover:text-primary-foreground;
+    @apply bg-white text-foreground border border-border px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-background-muted hover:border-primary;
   }
   
   .card-earth {
-    @apply bg-background-paper border border-border rounded-xl shadow-earth p-6 transition-all duration-200 hover:shadow-earth-lg hover:-translate-y-1;
+    @apply bg-background-paper border border-border rounded-xl shadow-sm p-6 transition-all duration-200 hover:shadow-md hover:border-border-accent;
   }
   
   .hero-gradient {
-    @apply bg-earth-hero text-primary-foreground;
+    @apply bg-gradient-to-br from-white to-background-muted text-foreground;
   }
   
   .section-muted {
-    @apply bg-background rounded-2xl p-8;
+    @apply bg-background-muted rounded-xl p-8;
   }
 }

@@ -1,7 +1,5 @@
 import mammoth from 'mammoth';
 import * as fs from 'fs/promises';
-// @ts-ignore - pdf-parse doesn't have proper types
-import pdfParse from 'pdf-parse';
 
 export interface ParsedDocument {
   content: string;
@@ -34,7 +32,7 @@ export class DocumentParser {
     return {
       content: result.value,
       type: 'docx',
-      wordCount: result.value.split(/\s+/).filter(word => word.length > 0).length
+      wordCount: result.value.split(/\s+/).filter((word: string) => word.length > 0).length
     };
   }
   
@@ -43,17 +41,21 @@ export class DocumentParser {
     return {
       content,
       type: 'text',
-      wordCount: content.split(/\s+/).filter(word => word.length > 0).length
+      wordCount: content.split(/\s+/).filter((word: string) => word.length > 0).length
     };
   }
   
   private static async parsePdf(filePath: string): Promise<ParsedDocument> {
+    // Dynamic import to avoid build issues with pdf-parse
+    // @ts-expect-error - pdf-parse doesn't have proper types
+    const pdfParse = (await import('pdf-parse')).default;
+    
     const fileBuffer = await fs.readFile(filePath);
     const pdfData = await pdfParse(fileBuffer);
     return {
       content: pdfData.text,
       type: 'pdf',
-      wordCount: pdfData.text.split(/\s+/).filter(word => word.length > 0).length,
+      wordCount: pdfData.text.split(/\s+/).filter((word: string) => word.length > 0).length,
       pages: pdfData.numpages
     };
   }

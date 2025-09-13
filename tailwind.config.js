@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Earth Tone Color Palette from color_scheme.html
+        // Minimal color palette with earth-tone accents
         charcoal: {
           black: '#0A0908',
         },
@@ -16,35 +16,37 @@ module.exports = {
           blue: '#22333B',
         },
         warm: {
-          cream: '#EAE0D5',
+          cream: '#FEFEFE',
           beige: '#C6AC8F',
         },
         dark: {
           brown: '#5E503F',
         },
-        // Semantic color mapping
+        // Semantic color mapping - minimal white-based
         primary: {
-          DEFAULT: '#22333B', // Slate Blue
+          DEFAULT: '#22333B', // Slate Blue (for accents)
           foreground: '#FFFFFF',
           hover: '#5E503F',
         },
         accent: {
-          DEFAULT: '#C6AC8F', // Warm Beige
+          DEFAULT: '#C6AC8F', // Warm Beige (subtle accent)
           foreground: '#0A0908',
           hover: '#5E503F',
         },
         background: {
-          DEFAULT: '#EAE0D5', // Warm Cream
-          paper: '#FFFFFF',
+          DEFAULT: '#FFFFFF', // Pure white primary background
+          paper: '#FEFEFE', // Slightly off-white for cards
+          muted: '#F8F9FA', // Very light gray for sections
         },
         foreground: {
-          DEFAULT: '#0A0908', // Charcoal Black
-          muted: '#22333B',
-          subtle: '#5E503F',
+          DEFAULT: '#1A1A1A', // Softer black for better readability
+          muted: '#6B7280', // Medium gray
+          subtle: '#9CA3AF', // Light gray
         },
         border: {
-          DEFAULT: '#C6AC8F',
-          muted: 'rgba(198, 172, 143, 0.3)',
+          DEFAULT: '#E5E7EB', // Light gray borders
+          muted: '#F3F4F6', // Very light borders
+          accent: 'rgba(198, 172, 143, 0.2)', // Subtle earth-tone borders
         },
         ring: '#22333B',
       },
