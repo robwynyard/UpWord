@@ -39,10 +39,10 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onFileUpload }) => {
       <div 
         {...getRootProps()} 
         className={`
-          border-2 border-dashed rounded-2xl p-16 text-center cursor-pointer transition-all duration-300 bg-white
+          border-2 border-dashed rounded-2xl p-16 text-center cursor-pointer transition-all duration-300 bg-background-paper
           ${isDragActive 
-            ? 'border-primary bg-primary/5 shadow-lg' 
-            : 'border-border hover:border-primary/50 hover:bg-background-muted hover:shadow-md'
+            ? 'border-accent bg-accent/10 shadow-earth-lg transform scale-105' 
+            : 'border-border hover:border-accent hover:bg-accent/5 hover:shadow-earth'
           }
           ${uploading ? 'pointer-events-none opacity-75' : ''}
         `}
@@ -50,33 +50,33 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ onFileUpload }) => {
         <input {...getInputProps()} />
         
         <div className="space-y-4">
-          <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
+          <div className="mx-auto w-20 h-20 bg-accent/30 rounded-full flex items-center justify-center">
             <span className="text-4xl">📄</span>
           </div>
           
           <div className="space-y-2">
-            <h3 className="text-2xl font-light text-foreground">
+            <h3 className="text-2xl font-semibold text-foreground">
               {isDragActive ? 'Drop your document here' : 'Upload your document'}
             </h3>
-            <p className="text-lg text-foreground-muted font-light">
+            <p className="text-lg text-foreground-muted">
               {isDragActive ? 'Release to upload' : 'Drag & drop or click to select'}
             </p>
           </div>
           
           <div className="space-y-1 pt-4">
-            <p className="text-sm text-foreground-muted font-light">
+            <p className="text-sm text-foreground-subtle">
               Supported formats: .docx, .txt, .pdf
             </p>
-            <p className="text-xs text-foreground-subtle font-light">
+            <p className="text-xs text-foreground-subtle">
               Maximum file size: 10MB
             </p>
           </div>
           
           {uploading && (
             <div className="mt-6">
-              <div className="inline-flex items-center gap-2 text-primary">
+              <div className="inline-flex items-center gap-2 text-accent">
                 <div className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full"></div>
-                <span className="text-sm font-light">Processing document...</span>
+                <span className="text-sm font-medium">Processing document...</span>
               </div>
             </div>
           )}
