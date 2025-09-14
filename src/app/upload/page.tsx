@@ -163,21 +163,21 @@ export default function UploadPage() {
               >
                 Upload New Document
               </button>
-              <button 
+              <Link 
+                href={`/process/${document.id}`}
                 className="btn-primary"
-                disabled
               >
-                Process with AI (Coming Soon)
-              </button>
+                Process with AI
+              </Link>
             </div>
 
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 text-foreground-muted">
-                <span>🚧</span>
-                <span>AI beautification features coming next!</span>
+              <div className="inline-flex items-center gap-2 text-green-600">
+                <span>✨</span>
+                <span>Ready for AI beautification!</span>
               </div>
               <p className="text-sm text-foreground-subtle mt-2">
-                The next phase will add AI analysis and visual generation capabilities.
+                Click "Process with AI" to transform your document with intelligent formatting and design.
               </p>
             </div>
           </div>
