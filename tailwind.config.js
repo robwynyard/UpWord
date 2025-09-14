@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Earth Tone Color Palette from color_scheme.html
+        // Balanced earth-tone color palette
         charcoal: {
           black: '#0A0908',
         },
@@ -16,35 +16,37 @@ module.exports = {
           blue: '#22333B',
         },
         warm: {
-          cream: '#EAE0D5',
+          cream: '#F5F2ED', // Softer warm cream (not pure white)
           beige: '#C6AC8F',
         },
         dark: {
           brown: '#5E503F',
         },
-        // Semantic color mapping
+        // Semantic color mapping - balanced earth tones
         primary: {
-          DEFAULT: '#22333B', // Slate Blue
-          foreground: '#FFFFFF',
-          hover: '#5E503F',
+          DEFAULT: '#22333B', // Slate Blue 
+          foreground: '#F5F2ED', // Warm cream instead of pure white
+          hover: '#1A252B', // Darker slate blue
         },
         accent: {
-          DEFAULT: '#C6AC8F', // Warm Beige
-          foreground: '#0A0908',
-          hover: '#5E503F',
+          DEFAULT: '#C6AC8F', // Warm Beige 
+          foreground: '#22333B', // Use slate blue instead of black
+          hover: '#B8A082', // Slightly darker beige
         },
         background: {
-          DEFAULT: '#EAE0D5', // Warm Cream
-          paper: '#FFFFFF',
+          DEFAULT: '#F5F2ED', // Soft warm cream as primary background
+          paper: '#FFFFFF', // Pure white for cards (creates nice contrast)
+          muted: '#F0EDE7', // Slightly deeper warm tone for sections
         },
         foreground: {
-          DEFAULT: '#0A0908', // Charcoal Black
-          muted: '#22333B',
-          subtle: '#5E503F',
+          DEFAULT: '#22333B', // Use slate blue for primary text
+          muted: '#5E503F', // Dark brown for secondary text
+          subtle: '#8B7D6B', // Muted brown for subtle text
         },
         border: {
-          DEFAULT: '#C6AC8F',
-          muted: 'rgba(198, 172, 143, 0.3)',
+          DEFAULT: 'rgba(198, 172, 143, 0.3)', // Subtle beige borders
+          muted: 'rgba(198, 172, 143, 0.15)', // Very light beige borders
+          accent: 'rgba(34, 51, 59, 0.2)', // Subtle slate blue borders
         },
         ring: '#22333B',
       },
