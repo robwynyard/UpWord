@@ -1,0 +1,10 @@
+/* CSS Custom Properties */
+:root {
+  /* Balanced earth tones color palette */
+  --color-primary: #7C8B5A;
+  --color-secondary: #A0825C;
+  --color-accent: #9B8C5A;
+  --color-background: #F8F6F2;
+  --color-text: #3D3B36;
+  --color-text-light: #6B6763;
+}
